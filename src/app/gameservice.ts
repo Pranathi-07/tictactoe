@@ -1,37 +1,45 @@
+import { EventListenerFocusTrapInertStrategy } from '@angular/cdk/a11y';
 import {Status}  from './gamestatus';
 
 export class Gameservice {
     gameField: Array<number> = [];
-    currentPlayer:number = 0;
-    gameStatus: Status=1;
+    currentPlayer:number = 1;
+    gameStatus: Status=Status.START;
+    count:number=0;
+    
 
     setField(position:number, value:number):void{
         this.gameField[position]=value;
+        console.log(this.gameField);
     }
 
     getPlayerColorClass(): string {
         const colorClass= (this.currentPlayer % 2 ===0)?'teamtwo':'teamone';
         return colorClass; 
     }
-    changePlayer():void{
-        if(this.currentPlayer<4)
+    changePlayer(rows:any):void{
+        let length:any;
+        if(rows.length===5){length=4;}
+        else if(rows.length===3){length=2;}
+        this.count++;
+        if(this.currentPlayer<length)
         this.currentPlayer+=1
         else
-        this.currentPlayer=1   
+        this.currentPlayer=1 
+         
     }
 
-    async checkGamefull():Promise<boolean>{
-        console.log(this.gameField);
+    async checkGamefull(rows:any):Promise<boolean>{
+
         let isFull=true;
-        if(this.gameField.includes(0)){
-        isFull=false;
-        }  
-        if (isFull){
-            this.gameStatus=0;
-            return true;
+        this.gameStatus=Status.STOP;
+        if(this.count<8 && rows.length===3){
+            this.gameStatus=Status.START;
+            isFull = false;
+        }else if(this.count<24 && rows.length===5){
+            this.gameStatus=Status.START;
+            isFull = false;  
         }
-        else{
-        return false;
-        }
+        return isFull;
     }
 }

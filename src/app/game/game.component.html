@@ -16,7 +16,7 @@
                 <input matInput #message maxlength="256" [(ngModel)]="playerName2" placeholder="Enter player name...">
             </mat-form-field>
         </div>
-        <div *ngIf="radioSelected && radioSelected.id===2 && !gameStatus " class="players-name5">
+        <div *ngIf="radioSelected && radioSelected.id===2 && gameStatus===0 " class="players-name5">
             <div class="player-team1">
                 <h1>Team 1</h1>
                 <mat-form-field class="example-full-width" appearance="fill">
@@ -41,7 +41,7 @@
             </div>
         </div>
 
-        <button mat-raised-button color="primary" class="startgame-button" *ngIf="!gameStatus" (click)="startGame()">Play</button>
+        <button mat-raised-button color="primary" class="startgame-button" *ngIf="gameStatus===0" (click)="startGame()">Play</button>
 
         <div *ngIf="radioSelected &&radioSelected.id===1 && showBoard" class="showplayer-nameright">
             <h1>{{playerName1}}</h1>
@@ -65,7 +65,7 @@
             <h1> {{playerName4}}</h1>
         </div>
 
-        <div *ngIf="gameStatus" class="rest-game">
+        <div *ngIf="gameStatus === 1" class="rest-game">
             <button mat-raised-button color="primary" class="resetgame-button" (click)="resetGame()">Reset</button>
         </div>
     </div>

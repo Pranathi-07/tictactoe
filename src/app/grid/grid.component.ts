@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import {Gameservice} from '../gameservice'
+import {Gameservice} from '../gameservice';
+import {Status}  from '../gamestatus'
 
 
 @Component({
@@ -16,6 +17,7 @@ export class GridComponent implements OnInit {
  @Input('currentPlayerList3') currentPlayerList3=[];
   rows:any[] = [] ;
   columns:any[] =[];
+  // gameStatus:Status=Status.START;
 
   // checkGamefull:any;
 
@@ -26,6 +28,7 @@ export class GridComponent implements OnInit {
     this.columns = Array(this.game.columns).fill("");
     console.log(this.rows, this.columns)
   }
+
   clickSubfield(col:any){
     
     if(this.grid.gameStatus===1 && col.currentTarget.innerHTML === ''){
@@ -43,20 +46,19 @@ export class GridComponent implements OnInit {
         col.currentTarget.innerHTML = this.grid.currentPlayer % 2 === 0 ? 'X' : 'O';
       }
       
-      // this.grid.checkGamefull().then( (end:Boolean)=>{
-      //   if(this.grid.gameStatus===0 && end){
+      this.grid.checkGamefull(this.rows).then( (end:Boolean)=>{
 
-      //     if (information === null) {
-      //       // information.innerHTML= "No Winner, DRAW ";
-      //     } else {
-      //       alert('oops');
-            
-      //     } 
-      //   }
-      // });
+        if(this.grid.gameStatus===Status.STOP && end){
+          if (information === null) {
+            alert('oops');
+          } else {
+            information.innerHTML= "No Winner, DRAW ";
+          } 
+        }
+      });
     }
 
-    this.grid.changePlayer();
+    this.grid.changePlayer(this.rows);
       
     }
  
