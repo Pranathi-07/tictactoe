@@ -1,0 +1,72 @@
+<div class="main-container">
+    <h1>TIC-TAC-TOE</h1>
+    <div class="game-container">
+        <div *ngIf="!gameStatus" class="grid-type">
+            <mat-radio-group [(ngModel)]="radioSelected" aria-label="Select an option">
+                <mat-radio-button *ngFor="let grid of grids" [value]="grid">{{grid.rows}} X {{grid.columns}} </mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <div *ngIf="radioSelected && radioSelected.id===1 && !gameStatus " class="players-name3">
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Player 1</mat-label>
+                <input matInput #message maxlength="256" [(ngModel)]="playerName1" placeholder="Enter player name...">
+            </mat-form-field>
+            <mat-form-field class="example-full-width" appearance="fill">
+                <mat-label>Player 2</mat-label>
+                <input matInput #message maxlength="256" [(ngModel)]="playerName2" placeholder="Enter player name...">
+            </mat-form-field>
+        </div>
+        <div *ngIf="radioSelected && radioSelected.id===2 && !gameStatus " class="players-name5">
+            <div class="player-team1">
+                <h1>Team 1</h1>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Player 1</mat-label>
+                    <input matInput #message maxlength="256" [(ngModel)]="playerName1" placeholder="Enter player name...">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Player 3</mat-label>
+                    <input matInput #message maxlength="256" [(ngModel)]="playerName3" placeholder="Enter player name...">
+                </mat-form-field>
+            </div>
+            <div class="player-team2">
+                <h1>Team 2</h1>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Player 2</mat-label>
+                    <input matInput #message maxlength="256" [(ngModel)]="playerName2" placeholder="Enter player name...">
+                </mat-form-field>
+                <mat-form-field class="example-full-width" appearance="fill">
+                    <mat-label>Player 4</mat-label>
+                    <input matInput #message maxlength="256" [(ngModel)]="playerName4" placeholder="Enter player name...">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <button mat-raised-button color="primary" class="startgame-button" *ngIf="!gameStatus" (click)="startGame()">Play</button>
+
+        <div *ngIf="radioSelected &&radioSelected.id===1 && showBoard" class="showplayer-nameright">
+            <h1>{{playerName1}}</h1>
+        </div>
+
+        <div *ngIf="radioSelected &&radioSelected.id===2 && showBoard" class="showplayer-nameright">
+            <h1>Team-1</h1>
+            <h1>{{playerName1}}</h1>
+            <h1>{{playerName3}}</h1>
+        </div>
+
+        <app-grid [game]="radioSelected" *ngIf="showBoard"></app-grid>
+
+        <div *ngIf="radioSelected &&radioSelected.id===1 && showBoard" class="showplayer-nameleft">
+            <h1> {{playerName2}}</h1>
+        </div>
+
+        <div *ngIf="radioSelected &&radioSelected.id===2 && showBoard" class="showplayer-nameright">
+            <h1>Team-2 </h1>
+            <h1>{{playerName2}} </h1>
+            <h1> {{playerName4}}</h1>
+        </div>
+
+        <div *ngIf="gameStatus" class="rest-game">
+            <button mat-raised-button color="primary" class="resetgame-button" (click)="resetGame()">Reset</button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,42 @@
+.rows-grid {
+    display: flex;
+    margin: 1px;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.col {
+    // display: flex;
+    // flex-direction: column;
+    align-items: center;
+    height: 75px;
+    cursor: pointer;
+    margin: 2px;
+    width: 75px;
+    border-radius: 7%;
+    border: 2px solid white;
+    font-size: 45px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-container {
+    margin-left: 25%;
+    margin-top: 40px;
+    border-radius: 3%;
+    width: 50%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.teamone {
+    background: green;
+}
+
+.teamtwo {
+    background: darkred;
+}
