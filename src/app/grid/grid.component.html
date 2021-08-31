@@ -2,8 +2,8 @@
     <div class="field">
         <p class="current-status mat-display-1" style="margin: 15px;"> Turn:Player{{grid.currentPlayer}}</p>
     </div>
-    <div *ngFor="let row of rows" class="rows-grid">
-        <div *ngFor="let col of columns" (click)="clickSubfield($event)" position="col of columns" row-position="row of rows" class="col">
+    <div *ngFor="let row of rows;let i=index;" class="rows-grid">
+        <div *ngFor="let col of columns;let j=index;" (click)="clickSubfield($event,i,j)" class="col">
         </div>
     </div>
 
