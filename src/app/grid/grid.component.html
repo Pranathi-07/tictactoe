@@ -1,6 +1,6 @@
 <div class="grid-container">
     <div class="field">
-        <p class="current-status mat-display-1" style="margin: 15px;"> Turn:Player{{grid.currentPlayer}}</p>
+        <p class="current-status mat-display-1" style="font-size: 15px;"> Turn:Player{{grid.currentPlayer}}</p>
     </div>
     <div *ngFor="let row of rows;let i=index;" class="rows-grid">
         <div *ngFor="let col of columns;let j=index;" (click)="clickSubfield($event,i,j)" class="col">

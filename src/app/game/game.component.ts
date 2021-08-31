@@ -38,6 +38,12 @@ export class GameComponent implements OnInit {
     this.showBoard = true;
     this.gameStatus = Status.START;
   }
+  restPlayerNames(): void {
+    this.playerName1 = '';
+    this.playerName2 = '';
+    this.playerName3 = '';
+    this.playerName4 = '';
+  }
 
   emitSelected() {
     this.showBoard = false;

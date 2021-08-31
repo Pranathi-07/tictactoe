@@ -66,7 +66,14 @@ export class GridComponent implements OnInit {
         if (information === null) {
           alert('oops');
         } else {
-          information.innerHTML = 'winner is  ' + col.currentTarget.innerHTML;
+          if (this.game.rows === 3) {
+            information.innerHTML =
+              'Winner is Player ' + this.grid.currentPlayer;
+          } else {
+            let winnngTeam =
+              this.grid.currentPlayer % 2 === 0 ? 'Team 2' : 'Team 1';
+            information.innerHTML = 'Winner is:' + winnngTeam;
+          }
         }
       }
       if (!isWinner) {
